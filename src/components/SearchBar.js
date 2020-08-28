@@ -34,7 +34,7 @@ const SearchBar = ({ hideButtons = false }) => {
                 <MicIcon />
             </div>
             {!hideButtons ? (
-                <div className="search__buttonsHidden">
+                <div className="search__buttons">
                     <Button type="submit" onClick={search} variant="outlined">
                         Google Search
                     </Button>
