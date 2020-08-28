@@ -26,7 +26,7 @@ const Home = () => {
                     alt=""
                 />
                 <div className="home__inputContainer">
-                    <SearchBar hideButtons />
+                    <SearchBar />
                 </div>
             </div>
         </div>
