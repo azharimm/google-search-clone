@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - npm install / yarn install
 - voila done
 
+- note: uncomment the googleSearch Hook in src/pages/Search.js to use the real API call
+
 # Screenshot
 
 ## Home Page
