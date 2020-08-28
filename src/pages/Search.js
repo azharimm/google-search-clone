@@ -5,18 +5,17 @@ import useGoogleSearch from '../useGoogleSearch';
 import Response from '../response';
 import './Search.css';
 import SearchBar from '../components/SearchBar';
-import SearchIcon from '@material-ui/icons/Search'
-import DescriptionIcon from '@material-ui/icons/Description'
-import ImageIcon from '@material-ui/icons/Image'
-import LocalOfferIcon from '@material-ui/icons/LocalOffer'
-import RoomIcon from '@material-ui/icons/Room'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
+import SearchIcon from '@material-ui/icons/Search';
+import DescriptionIcon from '@material-ui/icons/Description';
+import ImageIcon from '@material-ui/icons/Image';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
+import RoomIcon from '@material-ui/icons/Room';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const Search = () => {
     const [{ term }, dispatch] = useStateValue();
-    // const { data } = useGoogleSearch(term); LIVE API CALL
+    // const { data } = useGoogleSearch(term); //LIVE API CALL
     const data = Response;
-    console.log(data);
 
     return (
         <div className="searchPage">
@@ -68,9 +67,23 @@ const Search = () => {
                     </div>
                 </div>
             </div>
-            <div className="searchPage__results">
+            {term && <div className="searchPage__results">
+                <p className="searchPage__resultCount">
+                    About {data?.searchInformation.formattedTotalResults} results ({data?.searchInformation.formattedSearchTime} seconds) for {term}
+                </p>
+                {data?.items.map(item => (
+                    <div className="searchPage__result" key={item.link}>
+                        <a href={item.link}>{item.displayLink}</a>
+                        <a href={item.link} className="searchPage__resultTitle">
+                            <h2>{item.title}</h2>
+                        </a>
+                        <p className="searchPage__resultSnippet">
+                            {item.snippet}
+                        </p>
 
-            </div>
+                    </div>
+                ))}
+            </div>}
         </div>
     );
 };

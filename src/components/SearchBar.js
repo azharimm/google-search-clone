@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
 import SearchIcon from '@material-ui/icons/Search';
@@ -8,9 +8,15 @@ import { actionTypes } from '../reducer';
 import './SearchBar.css';
 
 const SearchBar = ({ hideButtons = false }) => {
-    const [{}, dispatch] = useStateValue();
+    const [{ term }, dispatch] = useStateValue();
     const [input, setInput] = useState('');
     const history = useHistory();
+
+    useEffect(() => {
+        if (term) {
+            setInput(term);
+        }
+    }, [term]);
 
     const search = (e) => {
         e.preventDefault();
@@ -18,7 +24,7 @@ const SearchBar = ({ hideButtons = false }) => {
             type: actionTypes.SET_SEARCH_TERM,
             term: input
         });
-        
+
         history.push('/search');
     };
 
